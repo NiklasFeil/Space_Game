@@ -1,0 +1,9 @@
+canvas {
+    width: 70vw;
+    height: 90vh;
+}
+
+#scoreContainer {
+    font-weight: bold;
+    font-size: 50px;
+}
