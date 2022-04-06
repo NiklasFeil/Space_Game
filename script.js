@@ -86,7 +86,9 @@ const checkForCollision = () => {
             rocket.speed = 0;
             canShoot = false;
             ufos = ufos.filter(u => u != ufo);
-
+            const boomAudio = new Audio('audio/boom.mp3');
+            boomAudio.volume = 0.2;
+            boomAudio.play();
             setTimeout(() => {
                 location.reload();
             }, 1000);
@@ -104,10 +106,15 @@ const checkForCollision = () => {
                 ufo.destroyed = true;
                 ufo.speed = 0;
                 score += 10;
+                const boomAudio = new Audio('audio/boom.mp3');
+                boomAudio.volume = 0.2;
+                boomAudio.play();
                 setTimeout(() => {
                     ufos = ufos.filter(u => u != ufo);
                 }, 250);
             };
+
+            
         })
     });
 };
@@ -148,10 +155,10 @@ const update = () => {
         canShoot = false;
         createLaser();
 
-        // 1 Second cooldown
+        // 0.75 Second cooldown
         setTimeout(() => {
             canShoot = true;
-        }, 1000);
+        }, 750);
     }
 
     ufos.forEach((ufo) => {
@@ -202,4 +209,7 @@ const createLaser = () => {
 
     laser.img.src = laser.src;
     lasers.push(laser);
+    const laserAudio = new Audio('audio/shoot.mp3');
+    laserAudio.volume = 0.2;
+    laserAudio.play();
 };
